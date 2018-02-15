@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image} from 'react-native';
 
 export default class Navbar extends React.Component {
   
@@ -7,13 +7,34 @@ export default class Navbar extends React.Component {
     return (
 			<View>
       <View style={styles.navcontainer}>
-			<Text style={styles.button2} onPress={() => this.props.setRank()}>rank {this.props.prerank}</Text>
-			<Text style={styles.button2} onPress={() => this.props.setDiff()}>difficulty {this.props.predifficulty}</Text>
+			<TouchableOpacity 
+			  style={styles.button2} 
+			  onPress={() => this.props.setRank()}>
+			    <Text style={styles.txt}>rank {this.props.prerank}</Text>
+			</TouchableOpacity>
+
+			<TouchableOpacity 
+			  style={styles.button2} 
+			  onPress={() => this.props.setDiff()}>
+			    <Text style={styles.txt}>difficulty {this.props.predifficulty}</Text>
+			</TouchableOpacity>
 			</View>
 			<View style={styles.navcontainer}>
-        <Text style={styles.button1} onPress={() => this.props.start()}>{this.props.startorclear}</Text>
-        <Text style={styles.button1} onPress={() => this.props.load()}>select</Text>
-        <Text style={styles.button1} onPress={() => this.props.gamecheck()}>check</Text>
+        <TouchableOpacity 
+			    style={styles.button1} 
+			    onPress={() => this.props.start()}>
+			      <Text style={styles.txt}>{this.props.startorclear}</Text>
+			  </TouchableOpacity>
+        <TouchableOpacity 
+			    style={styles.button1} 
+			    onPress={() => this.props.load()}>
+			      <Text style={styles.txt}>select</Text>
+			  </TouchableOpacity>
+        <TouchableOpacity 
+			    style={styles.button1} 
+			    onPress={() => this.props.gamecheck()}>
+			      <Text style={styles.txt}>check</Text>
+			  </TouchableOpacity>
       </View>
 			</View>
 
@@ -32,28 +53,28 @@ const styles = StyleSheet.create({
 
   button1: {
     backgroundColor: '#87CEEB',
-    color: '#FEFDE3',
-    fontSize: 18,
     borderWidth: 1,
     borderColor: '#FEFDE3',
+		alignItems: 'center',
     margin: 1,
     padding: 12,
-    textAlign: 'center',
     width: 104,  
   },
 
 button2: {
     backgroundColor: '#87CEEB',
-    color: '#FEFDE3',
-    fontSize: 18,
     borderWidth: 1,
     borderColor: '#FEFDE3',
+		alignItems: 'center',
     margin: 1,
     padding: 12,
-    textAlign: 'center',
     width: 120,  
   },
 
+	txt: {
+		    color: '#FEFDE3',
+		    fontSize: 18,
+		  },
 
 
 });

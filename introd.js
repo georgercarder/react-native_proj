@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image} from 'react-native';
 
 export default class Introd extends React.Component {
 
@@ -10,7 +10,7 @@ export default class Introd extends React.Component {
 			 <Text style={styles.title}>Sudoku Sunshine</Text>
 			</View>
 			<View style={styles.footer}>
-			<Text style={styles.button} onPress={() => this.props.changepage(1)}>click to enter</Text>
+			<TouchableOpacity style={styles.button} onPress={() => this.props.changepage(1)}><Text style={styles.txt}>click to enter</Text></TouchableOpacity>
 			</View>
 			</View>
     );
@@ -48,15 +48,19 @@ const styles = StyleSheet.create({
 
 	button: {
 		    backgroundColor: '#87CEEB',
-		    color: '#FEFDE3',
-		    fontSize: 22,
 		    borderWidth: 1,
 		    borderColor: '#FEFDE3',
 		    margin: 1,
 		    padding: 12,
-		    textAlign: 'center',
+		    alignItems: 'center',
 		    width: 200,
+				alignItems: 'center',
 		  },
+
+	txt: {
+		color: '#FEFDE3',
+		fontSize: 22,
+	}
 
 
 });
