@@ -32,9 +32,8 @@ const styles = StyleSheet.create({
 		/*width: 300,*/
 		/*height: 300,*/
     flex: 9,
-    backgroundColor: 'blue',
+    backgroundColor: '#87CEEB',
     alignItems: 'center',
-    justifyContent: 'center',
   },
 
 	game: {

@@ -47,8 +47,6 @@ export default class Board extends React.Component {
     return (
 				<View>
 				{this.buildtable(this.props.rank)}		
-				<Text>board</Text>
-			<Text>dog {this.props.rank}</Text>
 				</View>
 
     );

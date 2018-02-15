@@ -10,7 +10,7 @@ function RedSquare(props) {
 
 const styles = StyleSheet.create({
 	redsquare: {
-		          backgroundColor: 'red',
+		          backgroundColor: '#ffff80',
 		          color: 'black',
 		          fontSize: 28,
 		          borderWidth: 1,

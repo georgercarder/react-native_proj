@@ -18,24 +18,23 @@ export default class Navbar extends React.Component {
 
 const styles = StyleSheet.create({
 
-	title: {
-		fontSize: 20,
-		color: '#FEFDE3', 
-	},
 
 	navcontainer: {
 		flexDirection: 'row',	
+	  justifyContent: 'center',
+		backgroundColor: '#87CEEB',
 	},
 
 	button: {
 		backgroundColor: '#87CEEB',
 		color: '#FEFDE3',
+		fontSize: 18,
 		borderWidth: 1,
 		borderColor: '#FEFDE3',
 		margin: 1,
 		padding: 8,
 		textAlign: 'center',
-		width: 60,	
+		width: 80,	
 	},
 
 });

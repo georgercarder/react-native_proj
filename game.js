@@ -17,7 +17,6 @@ export default class Game extends React.Component {
       message: null,
       startorclear: 'start',
       started: 0,
-			checked: 0,
     }
   }
 
@@ -73,7 +72,6 @@ if(this.state.startorclear==='start'){
   }
 
   gamecheck(){
-		this.setState({checked: this.state.checked+1})
     var SQUARES=this.state.squares.slice()
     var rank=this.state.rank
 
@@ -145,8 +143,7 @@ if(this.state.startorclear==='start'){
         gamecheck={() => this.gamecheck()}
 				start={() => this.start()}/>
 
-      <Text>game checked {this.state.checked}</Text>
-      <Text>{this.gamestatus()}</Text>
+      <Text style={styles.status}>{this.gamestatus()}</Text>
       <Board 
         rank={this.state.rank}
         red={this.state.red}
@@ -161,10 +158,12 @@ if(this.state.startorclear==='start'){
 
 const styles = StyleSheet.create({
 
-  title: {
-    fontSize: 42,
+  status: {
+    fontSize: 18,
     color: '#FEFDE3', 
-  },
+    padding: 20,
+		textAlign: 'center',
+	},
 
 
 });
