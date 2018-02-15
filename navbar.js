@@ -2,21 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
 
 export default class Navbar extends React.Component {
-	constructor(props){
-		super(props),
-		this.state={
-			tag: 1,
-		}
-	} 
-
 	
 	render() {
     return (
 				<View style={styles.navcontainer}>
-					<Text>{this.state.tag}</Text>
-					<Text style={styles.button}>startt</Text>
+					<Text style={styles.button} onPress={() => this.props.start()}>start</Text>
 					<Text style={styles.button}>select</Text>
-					<Text style={styles.button} onPress={() => this.setState({tag: this.state.tag+1})}>check</Text>
+					<Text style={styles.button} onPress={() => this.props.gamecheck()}>check</Text>
+			
 				</View>
 
     );

@@ -10,7 +10,7 @@ function Square(props) {
 
 const styles = StyleSheet.create({
 	square: {
-			    backgroundColor: 'red',
+			    backgroundColor: 'white',
 			    color: 'black',
 					fontSize: 28,
 			    borderWidth: 1,
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 			    margin: 1,
 			    padding: 8,
 			    textAlign: 'center',
+					height: 60,
 			    width: 60,  
 
 	},	
