@@ -16,6 +16,7 @@ export default class Game extends React.Component {
       red: Array(16).fill(null),
       win: false,
       message: null,
+			status: <Text>push 'start' to start game</Text>,
       startorclear: 'start',
       started: 0,
       puzzles: this.props.puzzles,
@@ -76,7 +77,7 @@ export default class Game extends React.Component {
           red[i]=null
         }
       }
-      this.setState({squares: squares, red: red, started: 1, startorclear: "clear",});
+      this.setState({squares: squares, red: red, started: 1, startorclear: "clear",}, () => this.changeStatus());
     } else {
       this.setState({
       squares: Array(this.state.rank**4).fill(null),
@@ -86,7 +87,7 @@ export default class Game extends React.Component {
       message: null,
       startorclear: 'start',
       started: 0,
-      });
+      }, () => this.changeStatus());
     }
   }
 
@@ -96,15 +97,15 @@ export default class Game extends React.Component {
     this.setState({squares: squares});
   }
 
-  gamestatus(){
+  changeStatus(){
     if(this.state.started!==1){
-      return (<Text> Push 'start' to start game </Text>)  
+      this.setState({status: <Text> push 'start' to start game </Text>})  
     } else if (this.state.win===false&&this.state.message!==1){
-      return (<Text> game in progress </Text>)  
+      this.setState({status: <Text> game in progress </Text>})  
     } else if (this.state.win===false&&this.state.message===1){
-      return (<Text> nope, keep trying </Text>)  
+      this.setState({status: <Text> nope, keep trying </Text>})  
     } else {
-      return (<Text> SUDOKU WINNER! </Text>)  
+      this.setState({status: <Text> SUDOKU WINNER! </Text>})  
     }  
   }
 
@@ -163,10 +164,10 @@ export default class Game extends React.Component {
       }
     }
     if( decision===true ){
-      this.setState({win: true, red: this.state.squares});
+      this.setState({win: true, red: this.state.squares}, () => this.changeStatus());
     } else {
-      this.setState({win: false, message:1});
-      setTimeout(function() {this.setState({message: 2})}.bind(this),1200)
+      this.setState({win: false, message:1}, () => this.changeStatus());
+      setTimeout(function() {this.setState({message: 2}, () => this.changeStatus())}.bind(this),1200)
     }
   }
 
@@ -177,7 +178,7 @@ export default class Game extends React.Component {
           <Text style={styles.title}>Sudoku Sunshine</Text>
         </View>
         <View style={styles.body}>
-          <Text style={styles.status}>{this.gamestatus()}</Text>
+          <Text style={styles.status}>{this.state.status}</Text>
           <View style={{'width':this.state.gameWidth}}>
             <Board 
               rank={this.state.rank}
