@@ -139,24 +139,26 @@ if(this.state.startorclear==='start'){
   render() {
     return (
       <View style={styles.container}>
-			<View style={styles.header}>
-				<Text style={styles.title}>Sudoku Sunshine</Text>
-			</View>
-			<View style={styles.body}>
-			<View style={styles.game}>
-      <Board 
-        rank={this.state.rank}
-        red={this.state.red}
-        squares={this.state.squares}
-        onPress={(i) => this.handlePress(i)}
-      />
-			<Text style={styles.status}>{this.gamestatus()}</Text>
-			<Navbar
-			        gamecheck={() => this.gamecheck()}
-			        start={() => this.start()}/>
-			</View>
-			</View>
-			<View style={styles.footer}></View>
+			  <View style={styles.header}>
+				  <Text style={styles.title}>Sudoku Sunshine</Text>
+			  </View>
+			  <View style={styles.body}>
+					<Text style={styles.status}>{this.gamestatus()}</Text>
+			    <View style={styles.game}>
+						<Board 
+              rank={this.state.rank}
+              red={this.state.red}
+              squares={this.state.squares}
+              onPress={(i) => this.handlePress(i)}
+            />
+			    </View>
+			  </View>
+				<View style={styles.subfooter}>
+			    <Navbar 
+			      gamecheck={() => this.gamecheck()}
+			      start={() => this.start()}/>
+			  </View>
+			  <View style={styles.footer}></View>
       </View>
 
     );
@@ -167,6 +169,8 @@ const styles = StyleSheet.create({
   
 	container: {
 		    flex: 1,
+				alignItems: 'center',
+				backgroundColor: '#87CEEB',
 
 		  },
 
@@ -176,6 +180,7 @@ const styles = StyleSheet.create({
 			    flex: 9,
 			    backgroundColor: '#87CEEB',
 			    alignItems: 'center',
+					margin: 10,
 			  },
 
 	  game: {
@@ -188,6 +193,7 @@ const styles = StyleSheet.create({
 			    backgroundColor: '#87CEEB',
 			    alignItems: 'center',
 			    justifyContent: 'center',
+					marginTop: 40,
 			  },
 
 	  title: {
@@ -195,14 +201,20 @@ const styles = StyleSheet.create({
 			    color: '#FEFDE3',
 			  },
 
+	  subfooter: {
+			flex: 2,
+			width: 320,
+		},
+
 	  footer: {
 			    flex: 1,
 			    backgroundColor: 'black',
+					width: 248,
 			  },
 
 
   status: {
-    fontSize: 18,
+    fontSize: 22,
     color: '#FEFDE3', 
 		padding: 20,
 		textAlign: 'center',

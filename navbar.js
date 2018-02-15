@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
 	button: {
 		backgroundColor: '#87CEEB',
 		color: '#FEFDE3',
-		fontSize: 18,
+		fontSize: 22,
 		borderWidth: 1,
 		borderColor: '#FEFDE3',
 		margin: 1,
-		padding: 8,
+		padding: 12,
 		textAlign: 'center',
-		width: 80,	
+		width: 100,	
 	},
 
 });
