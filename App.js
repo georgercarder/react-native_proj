@@ -6,17 +6,7 @@ export default class App extends React.Component {
   render() {
 
     return (
-			<View style={styles.container}>
-			<View style={styles.header}>
-				<Text style={styles.title}>Sudoku Sunshine</Text>	
-			</View>
-      <View style={styles.body}>
-			<View style={styles.game}>
 			<Game />
-			</View>
-      </View>
-			<View style={styles.footer}></View>
-			</View>
 
     );
   }
@@ -42,7 +32,7 @@ const styles = StyleSheet.create({
 
 
 	header: {
-		flex: 2.5,
+		flex: 2,
 		backgroundColor: '#87CEEB',
 		alignItems: 'center',
 		justifyContent: 'center',
