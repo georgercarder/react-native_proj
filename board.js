@@ -11,22 +11,24 @@ export default class Board extends React.Component {
         value={this.props.squares[i]}
         rank={this.props.rank}  
         onPress={() => this.props.onPress(i)}
+				key={i}
         />;
     } else {
       return <RedSquare
         value={this.props.squares[i]}
         rank={this.props.rank}
+				key={i}
         />;
     }  
   }
 
-  buildrow(i) {
+  buildrow(i,rank) {
     var row=[]
     for (var j=0;j<this.props.rank**2;j++){
       var index=j+i*(this.props.rank**2)
       row.push(this.renderSquare(index))
     }
-    return <View style={styles.row} >
+    return <View style={styles.row} key={rank+i}>
             {row}
             </View>
   }
@@ -37,7 +39,7 @@ export default class Board extends React.Component {
     } else {
       var table=[]
       for(var i=0;i<rank**2;i++){
-        table.push(this.buildrow(i))  
+        table.push(this.buildrow(i,rank))  
       }
       return table
     }  
