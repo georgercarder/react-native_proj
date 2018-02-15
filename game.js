@@ -20,6 +20,7 @@ export default class Game extends React.Component {
     }
   }
 
+
 	start(){
 if(this.state.startorclear==='start'){
 	      const red=this.state.red.slice()
@@ -144,7 +145,7 @@ if(this.state.startorclear==='start'){
 			  </View>
 			  <View style={styles.body}>
 					<Text style={styles.status}>{this.gamestatus()}</Text>
-			    <View style={styles.game}>
+			    <View style={{'width':this.state.gameWidth}}>
 						<Board 
               rank={this.state.rank}
               red={this.state.red}
@@ -158,7 +159,6 @@ if(this.state.startorclear==='start'){
 			      gamecheck={() => this.gamecheck()}
 			      start={() => this.start()}/>
 			  </View>
-			  <View style={styles.footer}></View>
       </View>
 
     );
@@ -183,17 +183,13 @@ const styles = StyleSheet.create({
 					margin: 10,
 			  },
 
-	  game: {
-			    width: 248,
-			  },
-
 
 	  header: {
 			    flex: 2,
 			    backgroundColor: '#87CEEB',
 			    alignItems: 'center',
 			    justifyContent: 'center',
-					marginTop: 40,
+					marginTop: 30,
 			  },
 
 	  title: {

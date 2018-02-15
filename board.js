@@ -10,11 +10,13 @@ export default class Board extends React.Component {
 			return <Square
 				
 				value={this.props.squares[i]}
+			  rank={this.props.rank}	
 				onPress={() => this.props.onPress(i)}
 				 />;
 		} else {
 			return <RedSquare
 				value={this.props.squares[i]}
+				rank={this.props.rank}
 				/>;
 		}	
 	}
@@ -48,7 +50,6 @@ export default class Board extends React.Component {
 				<View>
 				{this.buildtable(this.props.rank)}		
 				</View>
-
     );
   }
 }
@@ -62,5 +63,6 @@ const styles = StyleSheet.create({
 
 	row: {
 		flexDirection: 'row',
-	}
+	},
+
 });
