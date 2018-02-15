@@ -5,11 +5,18 @@ export default class Navbar extends React.Component {
   
   render() {
     return (
+			<View>
       <View style={styles.navcontainer}>
-        <Text style={styles.button} onPress={() => this.props.start()}>{this.props.startorclear}</Text>
-        <Text style={styles.button}>select</Text>
-        <Text style={styles.button} onPress={() => this.props.gamecheck()}>check</Text>
+			<Text style={styles.button2} onPress={() => this.props.setRank()}>rank {this.props.prerank}</Text>
+			<Text style={styles.button2} onPress={() => this.props.setDiff()}>difficulty {this.props.predifficulty}</Text>
+			</View>
+			<View style={styles.navcontainer}>
+        <Text style={styles.button1} onPress={() => this.props.start()}>{this.props.startorclear}</Text>
+        <Text style={styles.button1} onPress={() => this.props.load()}>select</Text>
+        <Text style={styles.button1} onPress={() => this.props.gamecheck()}>check</Text>
       </View>
+			</View>
+
     );
   }
 }
@@ -23,16 +30,30 @@ const styles = StyleSheet.create({
     backgroundColor: '#87CEEB',
   },
 
-  button: {
+  button1: {
     backgroundColor: '#87CEEB',
     color: '#FEFDE3',
-    fontSize: 22,
+    fontSize: 18,
     borderWidth: 1,
     borderColor: '#FEFDE3',
     margin: 1,
     padding: 12,
     textAlign: 'center',
-    width: 100,  
+    width: 104,  
   },
+
+button2: {
+    backgroundColor: '#87CEEB',
+    color: '#FEFDE3',
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#FEFDE3',
+    margin: 1,
+    padding: 12,
+    textAlign: 'center',
+    width: 120,  
+  },
+
+
 
 });

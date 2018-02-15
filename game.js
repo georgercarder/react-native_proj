@@ -177,7 +177,6 @@ export default class Game extends React.Component {
           <Text style={styles.title}>Sudoku Sunshine</Text>
         </View>
         <View style={styles.body}>
-          <Text>{this.state.puzzles}</Text>
           <Text style={styles.status}>{this.gamestatus()}</Text>
           <View style={{'width':this.state.gameWidth}}>
             <Board 
@@ -189,10 +188,16 @@ export default class Game extends React.Component {
           </View>
         </View>
         <View style={styles.subfooter}>
-          <Navbar 
+          <Navbar
+						prerank={this.state.prerank}
+						predifficulty={this.state.predifficulty}
+						setRank={() => this.setRank()}
+						setDiff={() => this.setDiff()}
+						load={() => this.load()}
             gamecheck={() => this.gamecheck()}
             start={() => this.start()}
-            startorclear={this.state.startorclear}/>
+						startorclear={this.state.startorclear}
+            />
         </View>
       </View>
     );
@@ -217,7 +222,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: '#87CEEB',
     alignItems: 'center',
     justifyContent: 'center',
@@ -230,12 +235,12 @@ const styles = StyleSheet.create({
   },
 
   subfooter: {
-    flex: 2,
+    flex: 3,
     width: 320,
   },
 
   footer: {
-    flex: 1,
+    flex: .2,
     backgroundColor: 'black',
     width: 248,
   },
@@ -243,7 +248,7 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 22,
     color: '#FEFDE3', 
-    padding: 20,
+    padding: 10,
     textAlign: 'center',
   },
 
