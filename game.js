@@ -7,52 +7,88 @@ export default class Game extends React.Component {
   constructor(props){
     super(props),
     this.state={
+      prepuzzle: this.props.puzzles[Math.floor(Math.random()*30)].puzzle,
       rank: 2,
       prerank: 2,
       difficulty: 5,
-			predifficulty: 5,
-			squares: Array(16).fill(null),
+      predifficulty: 5,
+      squares: Array(16).fill(null),
       red: Array(16).fill(null),
       win: false,
       message: null,
       startorclear: 'start',
       started: 0,
+      puzzles: this.props.puzzles,
     }
   }
 
+  setRank() {
+    if(this.state.prerank===2){
+      this.setState({prerank: 3})  
+    } else {
+      this.setState({prerank: 2})  
+    }  
+  }
 
-	start(){
-if(this.state.startorclear==='start'){
-	      const red=this.state.red.slice()
-	      const squares= this.state.squares.slice();
-	      var puzzle=[1,4,0,0,0,0,0,0,3,0,1,0,0,0,2,0]
+  setDiff(){
+    var predifficulty = this.state.predifficulty
+    this.setState({predifficulty: (predifficulty%6)+1})
+  }
 
-	      for(var i=0;i<this.state.rank**4;i++){
-					        if(puzzle[i]!==0){
-										          squares[i]=puzzle[i]
-										          red[i]=puzzle[i]
-										        } else {
-															          squares[i]=null
-															          red[i]=null
-															        }
-					      }
+  load(){
+    this.findPuzzle(this.state.prerank,this.state.predifficulty);
+    this.setState({
+      rank: this.state.prerank,
+      difficulty: this.state.predifficulty,
+      /*squares,red:Array(this.state.prerank**4).fill(null)*/
+      win: false,
+      message: null,
+      startorclear: 'start',
+      started: 0,
+     })
+     setTimeout(function() {this.start()}.bind(this),1)
+    }
 
-	      this.setState({squares: squares, red: red, started: 1, startorclear: "clear",});
-	    } else {
-				      this.setState({
-								        squares: Array(this.state.rank**4).fill(null),
-								        red: Array(this.state.rank**4).fill(null),
-								        win: false,
-								        checking: 0,
-								        message: null,
-								        startorclear: 'start',
-								        started: 0,
-								      });
-				    }
-
-	
-	
-	}
+    findPuzzle(rank,diff){
+      var l = this.state.puzzles.length
+      var found = false
+      var r = 0
+      while(found === false){
+        r = Math.floor(Math.random()*l)
+        if(this.state.puzzles[r].rank===rank && this.state.puzzles[r].difficulty===diff){
+          this.setState({prepuzzle: this.state.puzzles[r].puzzle.slice()})
+          found = true
+        }
+      }
+    }
+  
+  start(){
+    if(this.state.startorclear==='start'){
+      const red=this.state.red.slice()
+      const squares= this.state.squares.slice();
+      var puzzle=this.state.prepuzzle;
+      for(var i=0;i<this.state.rank**4;i++){
+        if(puzzle[i]!==0){
+          squares[i]=puzzle[i]
+          red[i]=puzzle[i]
+        } else {
+          squares[i]=null
+          red[i]=null
+        }
+      }
+      this.setState({squares: squares, red: red, started: 1, startorclear: "clear",});
+    } else {
+      this.setState({
+      squares: Array(this.state.rank**4).fill(null),
+      red: Array(this.state.rank**4).fill(null),
+      win: false,
+      checking: 0,
+      message: null,
+      startorclear: 'start',
+      started: 0,
+      });
+    }
+  }
 
   handlePress(i) {
     const squares = this.state.squares.slice();
@@ -75,10 +111,9 @@ if(this.state.startorclear==='start'){
   gamecheck(){
     var SQUARES=this.state.squares.slice()
     var rank=this.state.rank
-
     var decision=true
 
-		//rows
+    //rows
     let set = new Set()
     for(var i=0;i<(rank**2);i++){
       set.clear()
@@ -90,7 +125,7 @@ if(this.state.startorclear==='start'){
         break
       }
     }
-		//cols
+    //cols
     for(var j=0;j<(rank**2);j++){
       set.clear()
       for(var i=0;i<=(rank**2);i++){
@@ -101,7 +136,7 @@ if(this.state.startorclear==='start'){
         break
       }
     }
-		//boxes
+    //boxes
     var b = 0
     let box = new Set()
     while(b<rank**2){
@@ -135,86 +170,81 @@ if(this.state.startorclear==='start'){
     }
   }
 
-
-
   render() {
     return (
       <View style={styles.container}>
-			  <View style={styles.header}>
-				  <Text style={styles.title}>Sudoku Sunshine</Text>
-			  </View>
-			  <View style={styles.body}>
-					<Text style={styles.status}>{this.gamestatus()}</Text>
-			    <View style={{'width':this.state.gameWidth}}>
-						<Board 
+        <View style={styles.header}>
+          <Text style={styles.title}>Sudoku Sunshine</Text>
+        </View>
+        <View style={styles.body}>
+          <Text>{this.state.puzzles}</Text>
+          <Text style={styles.status}>{this.gamestatus()}</Text>
+          <View style={{'width':this.state.gameWidth}}>
+            <Board 
               rank={this.state.rank}
               red={this.state.red}
               squares={this.state.squares}
               onPress={(i) => this.handlePress(i)}
             />
-			    </View>
-			  </View>
-				<View style={styles.subfooter}>
-			    <Navbar 
-			      gamecheck={() => this.gamecheck()}
-			      start={() => this.start()}/>
-			  </View>
+          </View>
+        </View>
+        <View style={styles.subfooter}>
+          <Navbar 
+            gamecheck={() => this.gamecheck()}
+            start={() => this.start()}
+            startorclear={this.state.startorclear}/>
+        </View>
       </View>
-
     );
   }
 }
 
 const styles = StyleSheet.create({
   
-	container: {
-		    flex: 1,
-				alignItems: 'center',
-				backgroundColor: '#87CEEB',
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#87CEEB',
+  },
 
-		  },
+  body: {
+    /*width: 300,*/
+    /*height: 300,*/
+    flex: 9,
+    backgroundColor: '#87CEEB',
+    alignItems: 'center',
+    margin: 10,
+  },
 
-	  body: {
-			    /*width: 300,*/
-			    /*height: 300,*/
-			    flex: 9,
-			    backgroundColor: '#87CEEB',
-			    alignItems: 'center',
-					margin: 10,
-			  },
+  header: {
+    flex: 2,
+    backgroundColor: '#87CEEB',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
 
+  title: {
+    fontSize: 42,
+    color: '#FEFDE3',
+  },
 
-	  header: {
-			    flex: 2,
-			    backgroundColor: '#87CEEB',
-			    alignItems: 'center',
-			    justifyContent: 'center',
-					marginTop: 30,
-			  },
+  subfooter: {
+    flex: 2,
+    width: 320,
+  },
 
-	  title: {
-			    fontSize: 42,
-			    color: '#FEFDE3',
-			  },
-
-	  subfooter: {
-			flex: 2,
-			width: 320,
-		},
-
-	  footer: {
-			    flex: 1,
-			    backgroundColor: 'black',
-					width: 248,
-			  },
-
+  footer: {
+    flex: 1,
+    backgroundColor: 'black',
+    width: 248,
+  },
 
   status: {
     fontSize: 22,
     color: '#FEFDE3', 
-		padding: 20,
-		textAlign: 'center',
-	},
-
+    padding: 20,
+    textAlign: 'center',
+  },
 
 });
