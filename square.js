@@ -19,36 +19,36 @@ function Square(props) {
 
 const styles = StyleSheet.create({
   square2: {
-		backgroundColor: 'white',
+    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#FEFDE3',
     margin: 1,
     padding: 8,
-		alignItems: 'center',
+    alignItems: 'center',
     height: 60,
     width: 60,  
   },  
   
   square3: {
-		backgroundColor: 'white',
+    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#FEFDE3',
     margin: 1,
     padding: 8,
-		alignItems: 'center',
+    alignItems: 'center',
     height: 35,
     width: 35,
   },
 
-	txtb1: {
-		fontSize: 28,
-		color: 'black',
-	},
+  txtb1: {
+    fontSize: 28,
+    color: 'black',
+  },
 
-	txtb2: {
-		fontSize: 14,
-		color: 'black',
-	},
+  txtb2: {
+    fontSize: 14,
+    color: 'black',
+  },
 
 });
 

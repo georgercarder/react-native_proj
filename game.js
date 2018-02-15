@@ -16,7 +16,7 @@ export default class Game extends React.Component {
       red: Array(16).fill(null),
       win: false,
       message: null,
-			status: <Text>push 'start' to start game</Text>,
+      status: <Text>push 'start' to start game</Text>,
       startorclear: 'start',
       started: 0,
       puzzles: this.props.puzzles,
@@ -190,14 +190,14 @@ export default class Game extends React.Component {
         </View>
         <View style={styles.subfooter}>
           <Navbar
-						prerank={this.state.prerank}
-						predifficulty={this.state.predifficulty}
-						setRank={() => this.setRank()}
-						setDiff={() => this.setDiff()}
-						load={() => this.load()}
+            prerank={this.state.prerank}
+            predifficulty={this.state.predifficulty}
+            setRank={() => this.setRank()}
+            setDiff={() => this.setDiff()}
+            load={() => this.load()}
             gamecheck={() => this.gamecheck()}
             start={() => this.start()}
-						startorclear={this.state.startorclear}
+            startorclear={this.state.startorclear}
             />
         </View>
       </View>

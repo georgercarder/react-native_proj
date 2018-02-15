@@ -5,14 +5,14 @@ function RedSquare(props) {
   if(props.rank===2){
     return (
       <Text style={styles.redsquare2}>
-			  {props.value}
-			</Text>
+        {props.value}
+      </Text>
     );
   } else {
     return (
       <Text style={styles.redsquare3}>
-			  {props.value}
-			</Text>  
+        {props.value}
+      </Text>  
     );
   }
 }

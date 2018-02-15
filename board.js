@@ -11,13 +11,13 @@ export default class Board extends React.Component {
         value={this.props.squares[i]}
         rank={this.props.rank}  
         onPress={() => this.props.onPress(i)}
-				key={i}
+        key={i}
         />;
     } else {
       return <RedSquare
         value={this.props.squares[i]}
         rank={this.props.rank}
-				key={i}
+        key={i}
         />;
     }  
   }
