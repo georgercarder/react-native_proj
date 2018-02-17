@@ -8,17 +8,17 @@ export default class Board extends React.Component {
   renderSquare(i) {
     if(this.props.red[i]==null){
       return <Square
-        value={this.props.squares[i]}
-        rank={this.props.rank}  
-        onPress={() => this.props.onPress(i)}
-        key={i}
-        />;
+               value={this.props.squares[i]}
+               rank={this.props.rank}  
+               onPress={() => this.props.onPress(i)}
+               key={i}
+             />;
     } else {
       return <RedSquare
-        value={this.props.squares[i]}
-        rank={this.props.rank}
-        key={i}
-        />;
+               value={this.props.squares[i]}
+               rank={this.props.rank}
+               key={i}
+             />;
     }  
   }
 
@@ -30,7 +30,7 @@ export default class Board extends React.Component {
     }
     return <View style={styles.row} key={rank+i}>
             {row}
-            </View>
+           </View>
   }
 
   buildtable(rank) {

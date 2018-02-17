@@ -57,7 +57,9 @@ export default class Game extends React.Component {
       while(found === false){
         r = Math.floor(Math.random()*l)
         if(this.state.puzzles[r].rank===rank && this.state.puzzles[r].difficulty===diff){
-          this.setState({prepuzzle: this.state.puzzles[r].puzzle.slice()})
+          this.setState({
+            prepuzzle: this.state.puzzles[r].puzzle.slice()
+          })
           found = true
         }
       }
@@ -77,7 +79,12 @@ export default class Game extends React.Component {
           red[i]=null
         }
       }
-      this.setState({squares: squares, red: red, started: 1, startorclear: "clear",}, () => this.changeStatus());
+      this.setState({
+        squares: squares, 
+        red: red, 
+        started: 1, 
+        startorclear: "clear",
+      }, () => this.changeStatus());
     } else {
       this.setState({
       squares: Array(this.state.rank**4).fill(null),
@@ -99,13 +106,21 @@ export default class Game extends React.Component {
 
   changeStatus(){
     if(this.state.started!==1){
-      this.setState({status: <Text> push 'start' to start game </Text>})  
+      this.setState({
+        status: <Text> push 'start' to start game </Text>
+      })  
     } else if (this.state.win===false&&this.state.message!==1){
-      this.setState({status: <Text> game in progress </Text>})  
+      this.setState({
+        status: <Text> game in progress </Text>
+      })  
     } else if (this.state.win===false&&this.state.message===1){
-      this.setState({status: <Text> nope, keep trying </Text>})  
+      this.setState({
+        status: <Text> nope, keep trying </Text>
+      })  
     } else {
-      this.setState({status: <Text> SUDOKU WINNER! </Text>})  
+      this.setState({
+        status: <Text> SUDOKU WINNER! </Text>
+      })  
     }  
   }
 
@@ -164,10 +179,20 @@ export default class Game extends React.Component {
       }
     }
     if( decision===true ){
-      this.setState({win: true, red: this.state.squares}, () => this.changeStatus());
+      this.setState({
+        win: true, 
+        red: this.state.squares
+      }, () => this.changeStatus());
     } else {
-      this.setState({win: false, message:1}, () => this.changeStatus());
-      setTimeout(function() {this.setState({message: 2}, () => this.changeStatus())}.bind(this),1200)
+      this.setState({
+        win: false, message:1
+      }, () => this.changeStatus());
+      setTimeout(
+        function() {
+          this.setState({
+            message: 2
+          }, () => this.changeStatus())}.bind(this),1200
+      )
     }
   }
 

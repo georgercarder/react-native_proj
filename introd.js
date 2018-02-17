@@ -10,7 +10,12 @@ export default class Introd extends React.Component {
        <Text style={styles.title}>Sudoku Sunshine</Text>
       </View>
       <View style={styles.footer}>
-      <TouchableOpacity style={styles.button} onPress={() => this.props.changepage(1)}><Text style={styles.txt}>click to enter</Text></TouchableOpacity>
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => this.props.changepage(1)}
+      >
+        <Text style={styles.txt}>click to enter</Text>
+      </TouchableOpacity>
       </View>
       </View>
     );
@@ -47,20 +52,19 @@ const styles = StyleSheet.create({
   },
 
   button: {
-        backgroundColor: '#87CEEB',
-        borderWidth: 1,
-        borderColor: '#FEFDE3',
-        margin: 1,
-        padding: 12,
-        alignItems: 'center',
-        width: 200,
-        alignItems: 'center',
-      },
+    backgroundColor: '#87CEEB',
+    borderWidth: 1,
+    borderColor: '#FEFDE3',
+    margin: 1,
+    padding: 12,
+    alignItems: 'center',
+    width: 200,
+    alignItems: 'center',
+  },
 
   txt: {
     color: '#FEFDE3',
     fontSize: 22,
   }
-
 
 });
